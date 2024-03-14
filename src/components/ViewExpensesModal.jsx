@@ -1,28 +1,35 @@
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
+import Stack from "react-bootstrap/Stack";
 
 import { useBudget } from "../context";
 
 // eslint-disable-next-line react/prop-types
 const ViewExpensesModal = ({ show, handleClose, defaultBudgetId }) => {
-  const { getBudgetExpenses } = useBudget();
+  const { getBudgetExpenses, budgets } = useBudget();
+
+  const budgetName =
+    defaultBudgetId === "Uncategorized"
+      ? "Uncategorized"
+      : budgets.filter((el) => el.id === defaultBudgetId)[0].name;
 
   const expenses = getBudgetExpenses(defaultBudgetId);
-  console.log(defaultBudgetId);
 
   return (
     <Modal show={show} onHide={handleClose} backdrop="static" keyboard={false}>
       <Modal.Header closeButton>
-        <Modal.Title>Expense</Modal.Title>
+        <Modal.Title>Expenses - {budgetName}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        {expenses.map((expense) => {
-          return (
-            <li key={expense.id}>
-              {expense.description} - {expense.amount}
-            </li>
-          );
-        })}
+        <Stack>
+          {expenses.map((expense) => {
+            return (
+              <div key={expense.id}>
+                {expense.description} - {expense.amount}
+              </div>
+            );
+          })}
+        </Stack>
       </Modal.Body>
       <Modal.Footer>
         <Button variant="primary" type="submit">
