@@ -1,8 +1,6 @@
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 
-import { getBudgetExpenses } from "../context";
-
 // eslint-disable-next-line react/prop-types
 const ViewExpensesModal = ({ show, handleClose }) => {
   return (
