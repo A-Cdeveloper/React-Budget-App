@@ -7,7 +7,7 @@ import Button from "react-bootstrap/Button";
 
 // eslint-disable-next-line react/prop-types
 const ViewExpensesModal = ({ show, handleClose, defaultBudgetId }) => {
-  const { getBudgetExpenses, budgets } = useBudget();
+  const { getBudgetExpenses, budgets, deleteBudget } = useBudget();
 
   const budgetName =
     defaultBudgetId === "Uncategorized"
@@ -21,7 +21,15 @@ const ViewExpensesModal = ({ show, handleClose, defaultBudgetId }) => {
       <Modal.Header closeButton>
         <Modal.Title>
           Expenses - {budgetName}{" "}
-          <Button type="button" variant="outline-danger" className="ms-2">
+          <Button
+            type="button"
+            variant="outline-danger"
+            className="ms-2"
+            onClick={() => {
+              deleteBudget(defaultBudgetId);
+              handleClose();
+            }}
+          >
             Delete
           </Button>
         </Modal.Title>
