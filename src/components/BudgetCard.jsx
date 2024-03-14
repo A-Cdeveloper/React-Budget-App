@@ -1,11 +1,19 @@
+/* eslint-disable react/prop-types */
 import Card from "react-bootstrap/Card";
 import ProgressBar from "react-bootstrap/ProgressBar";
 import Button from "react-bootstrap/Button";
 import Stack from "react-bootstrap/Stack";
 
 import { currencyFormater } from "../utils/formaters";
-// eslint-disable-next-line react/prop-types
-const BudgetCard = ({ name, amount, max, addDefaultBudgetId, hideButtons }) => {
+
+const BudgetCard = ({
+  name,
+  amount,
+  max,
+  addDefaultBudgetId,
+  viewExpenses,
+  hideButtons,
+}) => {
   const getProgressBarVariant = (amount, max) => {
     const koefitient = amount / max;
     if (koefitient < 0.5) return "primary";
@@ -56,7 +64,11 @@ const BudgetCard = ({ name, amount, max, addDefaultBudgetId, hideButtons }) => {
             >
               Add Expense
             </Button>
-            <Button variant="outline-secondary" size="sm">
+            <Button
+              variant="outline-secondary"
+              size="sm"
+              onClick={viewExpenses}
+            >
               View Expenses
             </Button>
           </Stack>

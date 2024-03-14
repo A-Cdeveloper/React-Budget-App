@@ -53,7 +53,6 @@ const AddExpenseModal = ({ show, handleClose, defaultBudgetId }) => {
               defaultValue={defaultBudgetId}
               required
             >
-              <option id={UNCATEGORIZER_BUDZET_ID}>Uncategorized</option>
               {budgets.map((budget) => {
                 return (
                   <option key={budget.id} value={budget.id}>
@@ -61,6 +60,7 @@ const AddExpenseModal = ({ show, handleClose, defaultBudgetId }) => {
                   </option>
                 );
               })}
+              <option id={UNCATEGORIZER_BUDZET_ID}>Uncategorized</option>
             </Form.Select>
           </Form.Group>
         </Modal.Body>
