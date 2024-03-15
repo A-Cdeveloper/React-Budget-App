@@ -4,6 +4,7 @@ import Stack from "react-bootstrap/Stack";
 import { useBudget } from "../context";
 import Expense from "./Expense";
 import Button from "react-bootstrap/Button";
+import { UNCATEGORIZER_BUDZET_ID } from "../context/BudgetContext";
 
 // eslint-disable-next-line react/prop-types
 const ViewExpensesModal = ({ show, handleClose, defaultBudgetId }) => {
@@ -21,17 +22,19 @@ const ViewExpensesModal = ({ show, handleClose, defaultBudgetId }) => {
       <Modal.Header closeButton>
         <Modal.Title>
           Expenses - {budgetName}{" "}
-          <Button
-            type="button"
-            variant="outline-danger"
-            className="ms-2"
-            onClick={() => {
-              deleteBudget(defaultBudgetId);
-              handleClose();
-            }}
-          >
-            Delete
-          </Button>
+          {defaultBudgetId !== UNCATEGORIZER_BUDZET_ID && (
+            <Button
+              type="button"
+              variant="outline-danger"
+              className="ms-2"
+              onClick={() => {
+                deleteBudget(defaultBudgetId);
+                handleClose();
+              }}
+            >
+              Delete
+            </Button>
+          )}
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>

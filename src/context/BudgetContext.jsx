@@ -63,7 +63,16 @@ export const BudgetContextProvider = ({ children }) => {
   };
   const deleteBudget = (budgetId) => {
     //  TODO
-    // extra logic for expenses
+    // extra logic for expenses - move expenses from deleted budget to Uncategorized
+
+    setExpenses((prevExpenses) => {
+      return prevExpenses.map((bexpense) => {
+        return bexpense.budgetId === budgetId
+          ? { ...bexpense, budgetId: UNCATEGORIZER_BUDZET_ID }
+          : bexpense;
+      });
+    });
+
     setBudgets((prevBudgets) => {
       return prevBudgets.filter((budget) => budget.id !== budgetId);
     });
