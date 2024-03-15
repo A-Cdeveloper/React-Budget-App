@@ -3,9 +3,11 @@
 import Stack from "react-bootstrap/Stack";
 import { currencyFormater } from "../utils/formaters";
 import { Button } from "react-bootstrap";
+import { useBudget } from "../context";
 
 const Expense = ({ expense }) => {
-  const { description, amount } = expense;
+  const { id, description, amount } = expense;
+  const { deleteExpense } = useBudget();
 
   return (
     <Stack
@@ -21,6 +23,7 @@ const Expense = ({ expense }) => {
           variant="outline-danger"
           size="sm"
           className="ms-3 align-self-end"
+          onClick={() => deleteExpense(id)}
         >
           &times;
         </Button>
