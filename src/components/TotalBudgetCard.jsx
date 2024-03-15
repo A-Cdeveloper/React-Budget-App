@@ -14,7 +14,12 @@ const TotalBudgetCard = () => {
   }, 0);
 
   return (
-    <BudgetCard name="Total" amount={amount} max={max} hideButtons={true} />
+    <BudgetCard
+      name="Total"
+      amount={amount}
+      max={max !== 0 ? max : null}
+      hideButtons={true}
+    />
   );
 };
 
